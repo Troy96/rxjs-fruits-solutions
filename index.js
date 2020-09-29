@@ -1,12 +1,11 @@
 const { EMPTY, from } = require('rxjs');
+const { distinct, take } = require('rxjs/operators');
 
 /**
  * Helper function to display the data in console
  * @param {any} data 
  */
 const toConveyorBelt = data => console.log(data);
-
-
 
 // LEVEL: 1: subscribe
 
@@ -45,4 +44,42 @@ conveyorBelt.subscribe();
 const fruits = from(["apple", "banana", "cherry"]);
 fruits.subscribe(fruit => toConveyorBelt(fruit));
 
+// LEVEL: 3 - distinct
 
+// Exercise: distinct
+// Oh no! We get more fruit than the recipe says.
+
+// The pipe operator enables us to execute different RxJS operators one after the other in order to get our fruits as we need them.
+
+// In our case, the distinct operator helps us. It prevents duplicate fruits from being delivered in our data stream. 
+
+// Recipe
+
+// Each fruit should only be mixed once. (Note: use distinct)
+
+// Apple
+// Banana
+
+const fruits = from(["apple", "apple", "banana", "apple"]);
+
+fruits.pipe(
+    distinct()
+).subscribe(fruit => toConveyorBelt(fruit));
+
+// LEVEL 4: take
+
+// Exercise: take
+// That is too much of a good thing!
+
+// Use the take operator to put only as much bananas on the conveyor belt as is specified in the recipe. 
+
+// Recipe
+// Only two bananas should be mixed. (Note: use take)
+
+// Banana
+// Banana
+
+const fruits = from(['banana', 'banana', 'banana', 'banana']);
+fruits.pipe(
+    take(2)
+).subscribe(fruit => toConveyorBelt(fruit));
