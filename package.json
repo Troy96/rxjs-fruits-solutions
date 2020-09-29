@@ -1,0 +1,29 @@
+{
+  "name": "rxjs-fruits-solutions",
+  "version": "1.0.0",
+  "description": "This package contains my solutions to a very interactive game for learning RxJS. Visit https://rxjs-fruits.com to play the game.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Troy96/rxjs-fruits-solutions.git"
+  },
+  "keywords": [
+    "rxjs",
+    "rxjs-fruits",
+    "javascript",
+    "angular"
+  ],
+  "author": "Tuhin Roy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Troy96/rxjs-fruits-solutions/issues"
+  },
+  "homepage": "https://github.com/Troy96/rxjs-fruits-solutions#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "rxjs": "^6.6.3"
+  }
+}
