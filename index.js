@@ -1,4 +1,4 @@
-const { EMPTY, from } = require('rxjs');
+const { EMPTY, from, merge } = require('rxjs');
 const { distinct, take, filter, map, distinctUntilChanged, skip } = require('rxjs/operators');
 
 /**
@@ -201,10 +201,36 @@ conveyorBelt.subscribe();
 
 // Banana
 
-const fruits = from(['dirty-apple', 'apple', 'dirty-banana', 'dirty-banana', 'apple']);
+// const fruits = from(['dirty-apple', 'apple', 'dirty-banana', 'dirty-banana', 'apple']);
 
-fruits.pipe(
-    skip(2),
-    take(1),
-    map(fruit => fruit.split('-')[1])
-).subscribe(fruit => toConveyorBelt(fruit))
+// fruits.pipe(
+//     skip(2),
+//     take(1),
+//     map(fruit => fruit.split('-')[1])
+// ).subscribe(fruit => toConveyorBelt(fruit))
+
+// LEVEL 11 - merge
+
+// Exercise: merge
+// Now we have to combine two deliveries.
+
+// Our fruit supplier had to deliver the fruit to us separately. The merge function can combine different observables into one observable. Then we can use the pipe function to put only fresh fruit on the conveyor belt.
+
+// Add only the fruits that are specified on the recipe. (Note: use merge and filter)
+
+// Apple
+// Apple
+// Apple
+// Banana
+// Banana
+// Banana
+
+// const apples = from(['apple', 'apple', 'old-apple', 'apple', 'old-apple']);
+// const bananas = from(['banana', 'old-banana', 'old-banana', 'banana', 'banana']);
+
+// merge(
+//     apples,
+//     bananas
+// ).pipe(
+//     filter(fruit => !fruit.includes('old'))
+// ).subscribe(fruit => toConveyorBelt(fruit));
