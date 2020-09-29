@@ -1,5 +1,5 @@
 const { EMPTY, from } = require('rxjs');
-const { distinct, take, filter } = require('rxjs/operators');
+const { distinct, take, filter, map } = require('rxjs/operators');
 
 /**
  * Helper function to display the data in console
@@ -100,8 +100,33 @@ conveyorBelt.subscribe();
 // Banana
 // Banana
 
-const fruits = from(['apple', 'apple', 'old-apple', 'apple', 'old-apple', 'banana', 'old-banana', 'old-banana', 'banana', 'banana']);
+// const fruits = from(['apple', 'apple', 'old-apple', 'apple', 'old-apple', 'banana', 'old-banana', 'old-banana', 'banana', 'banana']);
+
+// fruits.pipe(
+//     filter(fruit => !fruit.includes('old'))
+// ).subscribe(fruit => toConveyorBelt(fruit));
+
+// LEVEL 6 - map
+
+// Exercise: map
+// Some fruits are dirty in this delivery.
+
+// The map operator enables data to be changed here. Wash the fruits by removing the dirt from dirty fruits
+
+// Recipe
+// All apples and bananas should be cleared of dirt. (Note: use map)
+
+// Apple
+// Apple
+// Banana
+// Banana
+
+const fruits = from(['dirty-apple', 'apple', 'dirty-banana', 'banana']);
 
 fruits.pipe(
-    filter(fruit => !fruit.includes('old'))
+    map(fruit => {
+        if (fruit.includes('dirty')) return fruit.split('-')[1];
+        return fruit;
+    })
 ).subscribe(fruit => toConveyorBelt(fruit));
+
