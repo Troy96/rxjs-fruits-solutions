@@ -189,3 +189,22 @@ conveyorBelt.subscribe();
 // fruits.pipe(
 //     skip(2)
 // ).subscribe(fruit => toConveyorBelt(fruit));
+
+// LEVEL 10 - skip-take-map
+
+// Exercise: skip-take-map
+// An excessive delivery!
+
+// You just want a banana. However, the delivery contains too much unnecessary fruit. Now use all operators that have been learned so far skip, take and map one after the other in the pipe function.
+
+// Add only the fruits that are specified on the recipe. (Note: use skip, take and map)
+
+// Banana
+
+const fruits = from(['dirty-apple', 'apple', 'dirty-banana', 'dirty-banana', 'apple']);
+
+fruits.pipe(
+    skip(2),
+    take(1),
+    map(fruit => fruit.split('-')[1])
+).subscribe(fruit => toConveyorBelt(fruit))
