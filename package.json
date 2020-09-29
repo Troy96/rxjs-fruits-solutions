@@ -1,7 +1,7 @@
 {
   "name": "rxjs-fruits-solutions",
   "version": "1.0.0",
-  "description": "This package contains my solutions to a very interactive game for learning RxJS. Visit https://rxjs-fruits.com to play the game.",
+  "description": "This package contains the solutions to a very interactive game for learning RxJS. Visit https://rxjs-fruits.com to play the game.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

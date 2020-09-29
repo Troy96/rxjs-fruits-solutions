@@ -1,5 +1,5 @@
 const { EMPTY, from } = require('rxjs');
-const { distinct, take } = require('rxjs/operators');
+const { distinct, take, filter } = require('rxjs/operators');
 
 /**
  * Helper function to display the data in console
@@ -41,8 +41,8 @@ conveyorBelt.subscribe();
 // Cherry
 
 
-const fruits = from(["apple", "banana", "cherry"]);
-fruits.subscribe(fruit => toConveyorBelt(fruit));
+// const fruits = from(["apple", "banana", "cherry"]);
+// fruits.subscribe(fruit => toConveyorBelt(fruit));
 
 // LEVEL: 3 - distinct
 
@@ -60,11 +60,11 @@ fruits.subscribe(fruit => toConveyorBelt(fruit));
 // Apple
 // Banana
 
-const fruits = from(["apple", "apple", "banana", "apple"]);
+// const fruits = from(["apple", "apple", "banana", "apple"]);
 
-fruits.pipe(
-    distinct()
-).subscribe(fruit => toConveyorBelt(fruit));
+// fruits.pipe(
+//     distinct()
+// ).subscribe(fruit => toConveyorBelt(fruit));
 
 // LEVEL 4: take
 
@@ -79,7 +79,29 @@ fruits.pipe(
 // Banana
 // Banana
 
-const fruits = from(['banana', 'banana', 'banana', 'banana']);
+// const fruits = from(['banana', 'banana', 'banana', 'banana']);
+// fruits.pipe(
+//     take(2)
+// ).subscribe(fruit => toConveyorBelt(fruit));
+
+// LEVEL 5: filter
+
+// Exercise: filter
+// Yuck! Old fruit has been delivered here.
+
+// Use the filter operator to put only fresh fruit on the conveyor belt.
+
+// All fresh apples and bananas should be mixed. (Note: use filter)
+
+// Apple
+// Apple
+// Apple
+// Banana
+// Banana
+// Banana
+
+const fruits = from(['apple', 'apple', 'old-apple', 'apple', 'old-apple', 'banana', 'old-banana', 'old-banana', 'banana', 'banana']);
+
 fruits.pipe(
-    take(2)
+    filter(fruit => !fruit.includes('old'))
 ).subscribe(fruit => toConveyorBelt(fruit));
