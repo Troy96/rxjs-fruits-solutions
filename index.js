@@ -1,5 +1,5 @@
 const { EMPTY, from, merge } = require('rxjs');
-const { distinct, take, filter, map, distinctUntilChanged, skip } = require('rxjs/operators');
+const { distinct, take, filter, map, distinctUntilChanged, skip, takeLast } = require('rxjs/operators');
 
 /**
  * Helper function to display the data in console
@@ -234,3 +234,23 @@ conveyorBelt.subscribe();
 // ).pipe(
 //     filter(fruit => !fruit.includes('old'))
 // ).subscribe(fruit => toConveyorBelt(fruit));
+
+// LEVEL 12 - takeLast
+
+// Exercise: takeLast
+// Only the last please!
+
+// Use the takeLast operator to put only a certain number of the last fruits on the conveyor belt
+
+// Only the last three fruits should be mixed. (Note: use takeLast)
+
+// Banana
+// Apple
+// Banana
+
+
+// const fruits = from(['apple', 'apple', 'banana', 'apple', 'banana']);
+
+// fruits.pipe(
+//     takeLast(3)
+// ).subscribe(fruit => toConveyorBelt(fruit))
