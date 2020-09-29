@@ -9,6 +9,10 @@ const { EMPTY } = require('rxjs');
 
 // An Observable is therefore only active if it is subscribed to with the subscribe-function. 
 
+// Recipe - 
+// In the source code we have an empty Observable with no data to expect.
+// Move the conveyor belt, by subscribing to the empty observable with the subscribe function and click on the start button.
+
 const conveyorBelt = EMPTY;
 
 conveyorBelt.subscribe();
