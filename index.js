@@ -1,5 +1,5 @@
 const { EMPTY, from } = require('rxjs');
-const { distinct, take, filter, map, distinctUntilChanged } = require('rxjs/operators');
+const { distinct, take, filter, map, distinctUntilChanged, skip } = require('rxjs/operators');
 
 /**
  * Helper function to display the data in console
@@ -167,8 +167,25 @@ conveyorBelt.subscribe();
 // Banana
 
 
-const fruits = from(['banana', 'apple', 'apple', 'banana', 'banana']);
+// const fruits = from(['banana', 'apple', 'apple', 'banana', 'banana']);
 
-fruits.pipe(
-    distinctUntilChanged()
-).subscribe(fruit => toConveyorBelt(fruit));
+// fruits.pipe(
+//     distinctUntilChanged()
+// ).subscribe(fruit => toConveyorBelt(fruit));
+
+
+// LEVEL 9 - skip
+
+// Exercise: skip
+// We can do without the first two fruits. The skip operator enables us to skip unnecessary fruit.
+
+// Add only the fruits specified on the recipe. (Note: use skip)
+
+// Banana
+// Apple
+
+// const fruits = from(['apple', 'apple', 'banana', 'apple']);
+
+// fruits.pipe(
+//     skip(2)
+// ).subscribe(fruit => toConveyorBelt(fruit));
