@@ -1,5 +1,5 @@
 const { EMPTY, from } = require('rxjs');
-const { distinct, take, filter, map } = require('rxjs/operators');
+const { distinct, take, filter, map, distinctUntilChanged } = require('rxjs/operators');
 
 /**
  * Helper function to display the data in console
@@ -154,3 +154,21 @@ conveyorBelt.subscribe();
 //     take(2)
 // ).subscribe(fruit => toConveyorBelt(fruit));
 
+// LEVEL 8 - distinctUntilChanged
+
+// One after the other! Some fruits come twice in a row. However, we need the fruits alternately.
+
+// In our case, the distinctUntilChanged operator helps us. It prevents duplicate fruits from being delivered one after the other in our data stream.
+
+// No fruit should be mixed twice in a row. (Note: use distinctUntilChanged)
+
+// Banana
+// Apple
+// Banana
+
+
+const fruits = from(['banana', 'apple', 'apple', 'banana', 'banana']);
+
+fruits.pipe(
+    distinctUntilChanged()
+).subscribe(fruit => toConveyorBelt(fruit));
