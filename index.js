@@ -1,5 +1,5 @@
 const { EMPTY, from, merge, zip } = require('rxjs');
-const { distinct, take, filter, map, distinctUntilChanged, skip, takeLast, skipLast, concatMap } = require('rxjs/operators');
+const { distinct, take, filter, map, distinctUntilChanged, skip, takeLast, skipLast, concatMap, repeat } = require('rxjs/operators');
 
 /**
  * Helper function to display the data in console
@@ -41,8 +41,8 @@ conveyorBelt.subscribe();
 // Cherry
 
 
-// const fruits = from(["apple", "banana", "cherry"]);
-// fruits.subscribe(fruit => toConveyorBelt(fruit));
+const fruits = from(["apple", "banana", "cherry"]);
+fruits.subscribe(fruit => toConveyorBelt(fruit));
 
 // LEVEL: 3 - distinct
 
@@ -60,11 +60,11 @@ conveyorBelt.subscribe();
 // Apple
 // Banana
 
-// const fruits = from(["apple", "apple", "banana", "apple"]);
+const fruits = from(["apple", "apple", "banana", "apple"]);
 
-// fruits.pipe(
-//     distinct()
-// ).subscribe(fruit => toConveyorBelt(fruit));
+fruits.pipe(
+    distinct()
+).subscribe(fruit => toConveyorBelt(fruit));
 
 // LEVEL 4: take
 
@@ -79,10 +79,10 @@ conveyorBelt.subscribe();
 // Banana
 // Banana
 
-// const fruits = from(['banana', 'banana', 'banana', 'banana']);
-// fruits.pipe(
-//     take(2)
-// ).subscribe(fruit => toConveyorBelt(fruit));
+const fruits = from(['banana', 'banana', 'banana', 'banana']);
+fruits.pipe(
+    take(2)
+).subscribe(fruit => toConveyorBelt(fruit));
 
 // LEVEL 5: filter
 
@@ -100,11 +100,11 @@ conveyorBelt.subscribe();
 // Banana
 // Banana
 
-// const fruits = from(['apple', 'apple', 'old-apple', 'apple', 'old-apple', 'banana', 'old-banana', 'old-banana', 'banana', 'banana']);
+const fruits = from(['apple', 'apple', 'old-apple', 'apple', 'old-apple', 'banana', 'old-banana', 'old-banana', 'banana', 'banana']);
 
-// fruits.pipe(
-//     filter(fruit => !fruit.includes('old'))
-// ).subscribe(fruit => toConveyorBelt(fruit));
+fruits.pipe(
+    filter(fruit => !fruit.includes('old'))
+).subscribe(fruit => toConveyorBelt(fruit));
 
 // LEVEL 6 - map
 
@@ -121,14 +121,14 @@ conveyorBelt.subscribe();
 // Banana
 // Banana
 
-// const fruits = from(['dirty-apple', 'apple', 'dirty-banana', 'banana']);
+const fruits = from(['dirty-apple', 'apple', 'dirty-banana', 'banana']);
 
-// fruits.pipe(
-//     map(fruit => {
-//         if (fruit.includes('dirty')) return fruit.split('-')[1];
-//         return fruit;
-//     })
-// ).subscribe(fruit => toConveyorBelt(fruit));
+fruits.pipe(
+    map(fruit => {
+        if (fruit.includes('dirty')) return fruit.split('-')[1];
+        return fruit;
+    })
+).subscribe(fruit => toConveyorBelt(fruit));
 
 
 // LEVEL 7 - filter, map, take
@@ -143,16 +143,16 @@ conveyorBelt.subscribe();
 // Apple
 // Banana
 
-// const fruits = from(['old-banana', 'apple', 'dirty-banana', 'apple']);
+const fruits = from(['old-banana', 'apple', 'dirty-banana', 'apple']);
 
-// fruits.pipe(
-//     filter(fruit => !fruit.includes('old')),
-//     map(fruit => {
-//         if (fruit.includes('dirty')) return fruit.split('-')[1]
-//         return fruit
-//     }),
-//     take(2)
-// ).subscribe(fruit => toConveyorBelt(fruit));
+fruits.pipe(
+    filter(fruit => !fruit.includes('old')),
+    map(fruit => {
+        if (fruit.includes('dirty')) return fruit.split('-')[1]
+        return fruit
+    }),
+    take(2)
+).subscribe(fruit => toConveyorBelt(fruit));
 
 // LEVEL 8 - distinctUntilChanged
 
@@ -167,11 +167,11 @@ conveyorBelt.subscribe();
 // Banana
 
 
-// const fruits = from(['banana', 'apple', 'apple', 'banana', 'banana']);
+const fruits = from(['banana', 'apple', 'apple', 'banana', 'banana']);
 
-// fruits.pipe(
-//     distinctUntilChanged()
-// ).subscribe(fruit => toConveyorBelt(fruit));
+fruits.pipe(
+    distinctUntilChanged()
+).subscribe(fruit => toConveyorBelt(fruit));
 
 
 // LEVEL 9 - skip
@@ -184,11 +184,11 @@ conveyorBelt.subscribe();
 // Banana
 // Apple
 
-// const fruits = from(['apple', 'apple', 'banana', 'apple']);
+const fruits = from(['apple', 'apple', 'banana', 'apple']);
 
-// fruits.pipe(
-//     skip(2)
-// ).subscribe(fruit => toConveyorBelt(fruit));
+fruits.pipe(
+    skip(2)
+).subscribe(fruit => toConveyorBelt(fruit));
 
 // LEVEL 10 - skip-take-map
 
@@ -201,13 +201,13 @@ conveyorBelt.subscribe();
 
 // Banana
 
-// const fruits = from(['dirty-apple', 'apple', 'dirty-banana', 'dirty-banana', 'apple']);
+const fruits = from(['dirty-apple', 'apple', 'dirty-banana', 'dirty-banana', 'apple']);
 
-// fruits.pipe(
-//     skip(2),
-//     take(1),
-//     map(fruit => fruit.split('-')[1])
-// ).subscribe(fruit => toConveyorBelt(fruit))
+fruits.pipe(
+    skip(2),
+    take(1),
+    map(fruit => fruit.split('-')[1])
+).subscribe(fruit => toConveyorBelt(fruit))
 
 // LEVEL 11 - merge
 
@@ -225,15 +225,15 @@ conveyorBelt.subscribe();
 // Banana
 // Banana
 
-// const apples = from(['apple', 'apple', 'old-apple', 'apple', 'old-apple']);
-// const bananas = from(['banana', 'old-banana', 'old-banana', 'banana', 'banana']);
+const apples = from(['apple', 'apple', 'old-apple', 'apple', 'old-apple']);
+const bananas = from(['banana', 'old-banana', 'old-banana', 'banana', 'banana']);
 
-// merge(
-//     apples,
-//     bananas
-// ).pipe(
-//     filter(fruit => !fruit.includes('old'))
-// ).subscribe(fruit => toConveyorBelt(fruit));
+merge(
+    apples,
+    bananas
+).pipe(
+    filter(fruit => !fruit.includes('old'))
+).subscribe(fruit => toConveyorBelt(fruit));
 
 // LEVEL 12 - takeLast
 
@@ -249,11 +249,11 @@ conveyorBelt.subscribe();
 // Banana
 
 
-// const fruits = from(['apple', 'apple', 'banana', 'apple', 'banana']);
+const fruits = from(['apple', 'apple', 'banana', 'apple', 'banana']);
 
-// fruits.pipe(
-//     takeLast(3)
-// ).subscribe(fruit => toConveyorBelt(fruit))
+fruits.pipe(
+    takeLast(3)
+).subscribe(fruit => toConveyorBelt(fruit))
 
 // LEVEL 13 - skipLast
 
@@ -268,11 +268,11 @@ conveyorBelt.subscribe();
 // Apple
 // Banana
 
-// const fruits = from(['apple', 'apple', 'banana', 'apple', 'banana']);
+const fruits = from(['apple', 'apple', 'banana', 'apple', 'banana']);
 
-// fruits.pipe(
-//     skipLast(2)
-// ).subscribe(fruit => toConveyorBelt(fruit));
+fruits.pipe(
+    skipLast(2)
+).subscribe(fruit => toConveyorBelt(fruit));
 
 // LEVEL 14 - 
 
@@ -290,26 +290,26 @@ conveyorBelt.subscribe();
 // Banana
 // Banana
 
-// const apples = from(['apple', 'dirty-apple', 'apple', 'old-apple', 'apple']);
-// const bananas = from(['old-banana', 'old-banana', 'dirty-banana', 'dirty-banana', 'dirty-banana']);
+const apples = from(['apple', 'dirty-apple', 'apple', 'old-apple', 'apple']);
+const bananas = from(['old-banana', 'old-banana', 'dirty-banana', 'dirty-banana', 'dirty-banana']);
 
-// const freshApples = apples.pipe(
-//     skipLast(2)
-// )
+const freshApples = apples.pipe(
+    skipLast(2)
+)
 
-// const freshBananas = bananas.pipe(
-//     skip(2)
-// )
+const freshBananas = bananas.pipe(
+    skip(2)
+)
 
-// merge(
-//     freshApples,
-//     freshBananas
-// ).pipe(
-//     map(fruit => {
-//         if (fruit.includes('dirty')) return fruit.split('-')[1]
-//         return fruit
-//     })
-// ).subscribe(fruit => toConveyorBelt(fruit))
+merge(
+    freshApples,
+    freshBananas
+).pipe(
+    map(fruit => {
+        if (fruit.includes('dirty')) return fruit.split('-')[1]
+        return fruit
+    })
+).subscribe(fruit => toConveyorBelt(fruit))
 
 // LEVEL 15 - 
 
@@ -328,12 +328,31 @@ conveyorBelt.subscribe();
 // Apple
 // Banana
 
-// const apples = from(['apple', 'apple']);
-// const bananas = from(['banana', 'banana']);
+const apples = from(['apple', 'apple']);
+const bananas = from(['banana', 'banana']);
 
-// zip(
-//     apples,
-//     bananas
-// ).pipe(
-//     concatMap(([apple, banana]) => [apple, banana])
-// ).subscribe(fruit => toConveyorBelt(fruit))
+zip(
+    apples,
+    bananas
+).pipe(
+    concatMap(([apple, banana]) => [apple, banana])
+).subscribe(fruit => toConveyorBelt(fruit))
+
+// LEVEL 16 -
+
+// Exercise: repeat
+// Much too little!
+
+// The delivery really only brought us an apple. The recipe gives us three apples need. In this emergency, the repeat operator helps us. He repeats the observable with the specified number.
+
+// Add only the fruits specified on the recipe. (Note: use repeat)
+
+// Apple
+// Apple
+// Apple
+
+const fruits = from(['apple']);
+
+fruits.pipe(
+    repeat(3)
+).subscribe(fruit => toConveyorBelt(fruit))
