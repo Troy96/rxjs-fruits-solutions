@@ -1,4 +1,11 @@
-const { EMPTY } = require('rxjs');
+const { EMPTY, from } = require('rxjs');
+
+/**
+ * Helper function to display the data in console
+ * @param {any} data 
+ */
+const toConveyorBelt = data => console.log(data);
+
 
 
 // LEVEL: 1: subscribe
@@ -16,4 +23,26 @@ const { EMPTY } = require('rxjs');
 const conveyorBelt = EMPTY;
 
 conveyorBelt.subscribe();
+
+// LEVEL: 2: subscribe-next
+
+// Now it's time to put some fruits on the conveyor belt!
+
+// The from function creates an observable from an array. This delivers the data one after the other, like a foreach loop.
+
+// The subscribe function expects a callback function as a parameter. This receives the data from the observable via the parameters.
+
+// Recipe
+// Subscribe to the Observable and put each fruit on the conveyor belt with the toConveyorBelt function.
+// Add only the fruits that are specified on the recipe. (Note: use subscribe with next)
+
+
+// Apple
+// Banana
+// Cherry
+
+
+const fruits = from(["apple", "banana", "cherry"]);
+fruits.subscribe(fruit => toConveyorBelt(fruit));
+
 
