@@ -121,12 +121,36 @@ conveyorBelt.subscribe();
 // Banana
 // Banana
 
-const fruits = from(['dirty-apple', 'apple', 'dirty-banana', 'banana']);
+// const fruits = from(['dirty-apple', 'apple', 'dirty-banana', 'banana']);
 
-fruits.pipe(
-    map(fruit => {
-        if (fruit.includes('dirty')) return fruit.split('-')[1];
-        return fruit;
-    })
-).subscribe(fruit => toConveyorBelt(fruit));
+// fruits.pipe(
+//     map(fruit => {
+//         if (fruit.includes('dirty')) return fruit.split('-')[1];
+//         return fruit;
+//     })
+// ).subscribe(fruit => toConveyorBelt(fruit));
+
+
+// LEVEL 7 - filter, map, take
+
+// What a mess!
+
+// You just want an apple and a banana. However, the delivery also includes old and dirty fruit. Now use all previously learned operators filter, map and take one after the other in the pipe function.
+
+// Add only the fruits that are specified on the recipe. (Note: use filter, map and take)
+
+
+// Apple
+// Banana
+
+// const fruits = from(['old-banana', 'apple', 'dirty-banana', 'apple']);
+
+// fruits.pipe(
+//     filter(fruit => !fruit.includes('old')),
+//     map(fruit => {
+//         if (fruit.includes('dirty')) return fruit.split('-')[1]
+//         return fruit
+//     }),
+//     take(2)
+// ).subscribe(fruit => toConveyorBelt(fruit));
 
