@@ -273,3 +273,40 @@ conveyorBelt.subscribe();
 // fruits.pipe(
 //     skipLast(2)
 // ).subscribe(fruit => toConveyorBelt(fruit));
+
+// LEVEL 14 - 
+
+// Exercise: skipLast, skip & merge
+// Don't give chaos a chance!
+
+// You received two deliveries. Take only usable fruit with the skipLast and skip operator. Then replace the empty observable with the merge function. Towards the end, clean up the dirty fruits and place them on the conveyor belt.
+
+// Add only the fruits that are specified on the recipe. (Note: use skipLast, skip, merge and map)
+
+// Apple
+// Apple
+// Apple
+// Banana
+// Banana
+// Banana
+
+// const apples = from(['apple', 'dirty-apple', 'apple', 'old-apple', 'apple']);
+// const bananas = from(['old-banana', 'old-banana', 'dirty-banana', 'dirty-banana', 'dirty-banana']);
+
+// const freshApples = apples.pipe(
+//     skipLast(2)
+// )
+
+// const freshBananas = bananas.pipe(
+//     skip(2)
+// )
+
+// merge(
+//     freshApples,
+//     freshBananas
+// ).pipe(
+//     map(fruit => {
+//         if (fruit.includes('dirty')) return fruit.split('-')[1]
+//         return fruit
+//     })
+// ).subscribe(fruit => toConveyorBelt(fruit))
