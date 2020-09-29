@@ -1,5 +1,5 @@
-const { EMPTY, from, merge } = require('rxjs');
-const { distinct, take, filter, map, distinctUntilChanged, skip, takeLast, skipLast } = require('rxjs/operators');
+const { EMPTY, from, merge, zip } = require('rxjs');
+const { distinct, take, filter, map, distinctUntilChanged, skip, takeLast, skipLast, concatMap } = require('rxjs/operators');
 
 /**
  * Helper function to display the data in console
@@ -309,4 +309,31 @@ conveyorBelt.subscribe();
 //         if (fruit.includes('dirty')) return fruit.split('-')[1]
 //         return fruit
 //     })
+// ).subscribe(fruit => toConveyorBelt(fruit))
+
+// LEVEL 15 - 
+
+// Exercise: zip & concatMap
+// Variety is the key to happiness!
+
+// We have received two deliveries and have to alternately put the contents on the conveyor belt. The zip function connects two observables and passes the data on to the pipe function alternately. However, not every fruit individually, but as a multi-dimensional array
+
+// The concatMap operator projects the multidimensional array into an observable and returns the fruit individually.
+
+// Each fruit should be mixed alternately. (Note: Use zip and concatMap)
+
+
+// Apple
+// Banana
+// Apple
+// Banana
+
+// const apples = from(['apple', 'apple']);
+// const bananas = from(['banana', 'banana']);
+
+// zip(
+//     apples,
+//     bananas
+// ).pipe(
+//     concatMap(([apple, banana]) => [apple, banana])
 // ).subscribe(fruit => toConveyorBelt(fruit))
