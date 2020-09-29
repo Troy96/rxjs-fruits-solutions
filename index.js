@@ -1,5 +1,5 @@
 const { EMPTY, from, merge } = require('rxjs');
-const { distinct, take, filter, map, distinctUntilChanged, skip, takeLast } = require('rxjs/operators');
+const { distinct, take, filter, map, distinctUntilChanged, skip, takeLast, skipLast } = require('rxjs/operators');
 
 /**
  * Helper function to display the data in console
@@ -254,3 +254,22 @@ conveyorBelt.subscribe();
 // fruits.pipe(
 //     takeLast(3)
 // ).subscribe(fruit => toConveyorBelt(fruit))
+
+// LEVEL 13 - skipLast
+
+// Exercise: skipLast
+// We can do without the last two fruits.
+
+// The skipLast operator enables us to ignore the last fruits
+
+// Add only the fruits specified on the recipe. (Note: use skipLast)
+
+// Apple
+// Apple
+// Banana
+
+// const fruits = from(['apple', 'apple', 'banana', 'apple', 'banana']);
+
+// fruits.pipe(
+//     skipLast(2)
+// ).subscribe(fruit => toConveyorBelt(fruit));
